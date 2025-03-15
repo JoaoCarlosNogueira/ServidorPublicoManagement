@@ -1,0 +1,39 @@
+package com.joaocarlos.seplag.entities;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.Id;
+
+import java.util.Date;
+import java.util.List;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+public class Pessoa {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long pesId;
+
+    private String pesNome;
+    private Date pesDataNascimento;
+    private String pesSexo;
+    private String pesMae;
+    private String pesPai;
+
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    private List<PessoaEndereco> enderecos;
+
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    private ServidorTemporario servidorTemporario;
+
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    private ServidorEfetivo servidorEfetivo;
+
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    private List<Lotacao> lotacoes;
+}
