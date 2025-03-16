@@ -1,9 +1,6 @@
 package com.joaocarlos.seplag.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +11,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ServidorEfetivo {
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private Long servidorEfetivoid;
+
     @OneToOne
     @JoinColumn(name = "pes_id")
     private Pessoa pessoa;

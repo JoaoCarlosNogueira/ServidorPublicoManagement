@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:15
-    container_name: meu_postgres
+    container_name: postgrescontainer
     restart: always
     environment:
       POSTGRES_DB: seplag
@@ -13,6 +11,18 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmincontainer
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"  # Mapeia a porta 5050 do host para a 80 do container
+    depends_on:
+      - postgres
 
   minio:
     image: minio/minio
@@ -28,6 +38,6 @@ services:
     volumes:
       - minio_data:/data
 
-#volumes:
-# postgres_data:
-#minio_data:
+volumes:
+  postgres_data:
+  minio_data:
