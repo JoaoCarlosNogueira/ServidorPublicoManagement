@@ -12,7 +12,7 @@ public class ServidorEfetivoService {
     @Autowired
     private ServidorEfetivoRepository servidorEfetivoRepository;
 
-    public Optional<ServidorEfetivo> findById(Long id) {
+    public Optional<ServidorEfetivo> findById(Integer id) {
         return servidorEfetivoRepository.findById(id);
     }
 
@@ -20,7 +20,7 @@ public class ServidorEfetivoService {
         return servidorEfetivoRepository.save(servidorEfetivo);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Integer id) {
         servidorEfetivoRepository.deleteById(id);
     }
 }

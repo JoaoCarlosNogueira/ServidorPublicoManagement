@@ -17,7 +17,7 @@ public class PessoaService {
         return pessoaRepository.findAll();
     }
 
-    public Optional<Pessoa> findById(Long id) {
+    public Optional<Pessoa> findById(Integer id) {
         return pessoaRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class PessoaService {
         return pessoaRepository.save(pessoa);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Integer id) {
         pessoaRepository.deleteById(id);
     }
 }

@@ -16,7 +16,7 @@ public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pesId;
+    private int pesId;
 
     private String pesNome;
     private Date pesDataNascimento;
@@ -27,10 +27,10 @@ public class Pessoa {
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
     private List<PessoaEndereco> enderecos;
 
-    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL, optional = true)
     private ServidorTemporario servidorTemporario;
 
-    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL,optional = true)
     private ServidorEfetivo servidorEfetivo;
 
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)

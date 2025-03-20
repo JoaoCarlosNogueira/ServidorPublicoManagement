@@ -21,7 +21,7 @@ public class PessoaController {
     }
 
     @GetMapping("/{id}")
-    public Pessoa buscarPorId(@PathVariable Long id) {
+    public Pessoa buscarPorId(@PathVariable Integer id) {
         return pessoaRepository.findById(id).orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
     }
 

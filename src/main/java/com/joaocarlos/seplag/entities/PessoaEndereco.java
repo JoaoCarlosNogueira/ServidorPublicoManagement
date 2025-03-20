@@ -11,15 +11,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PessoaEndereco {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @EmbeddedId
+    private PessoaEnderecoId id;
 
     @ManyToOne
-    @JoinColumn(name = "pes_id")
+    @JoinColumn(name = "pes_id", insertable = false, updatable = false)
     private Pessoa pessoa;
 
     @ManyToOne
-    @JoinColumn(name = "end_id")
+    @JoinColumn(name = "end_id", insertable = false, updatable = false)
     private Endereco endereco;
 }

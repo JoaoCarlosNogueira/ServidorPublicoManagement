@@ -12,9 +12,10 @@ import lombok.Setter;
 public class ServidorEfetivo {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Long servidorEfetivoid;
+    private Integer pesId;
 
     @OneToOne
+    @MapsId
     @JoinColumn(name = "pes_id")
     private Pessoa pessoa;
 

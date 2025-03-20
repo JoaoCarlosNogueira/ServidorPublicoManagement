@@ -11,15 +11,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UnidadeEndereco {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long unidadeEnderecoid;
+    @EmbeddedId
+    private UnidadeEnderecoId id;
 
     @ManyToOne
-    @JoinColumn(name = "unid_id")
+    @JoinColumn(name = "unidId", insertable = false, updatable = false)
     private Unidade unidade;
 
     @ManyToOne
-    @JoinColumn(name = "end_id")
+    @JoinColumn(name = "endId", insertable = false, updatable = false)
     private Endereco endereco;
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.persister.collection.mutation.UpdateRowsCoordinatorNoOp;
 
 import java.util.Date;
 
@@ -14,11 +15,11 @@ import java.util.Date;
 public class ServidorTemporario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long servidorTemporarioid;
+    private Integer pesId;
 
     @OneToOne
-    @JoinColumn(name = "pes_id")
+    @MapsId
+    @JoinColumn(name = "pes_id", nullable = false)
     private Pessoa pessoa;
 
     private Date stDataAdmissao;

@@ -10,7 +10,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-   #   - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
   pgadmin:
     image: dpage/pgadmin4
@@ -35,9 +35,9 @@ services:
       MINIO_ROOT_USER: admin
       MINIO_ROOT_PASSWORD: admin123
     command: server /data --console-address ":9001"
-   # volumes:
-    #  - minio_data:/data
+    volumes:
+      - minio_data:/data
 
-#volumes:
-#  postgres_data:
-#  minio_data:
+volumes:
+  postgres_data:
+  minio_data:
