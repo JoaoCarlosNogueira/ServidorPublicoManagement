@@ -12,7 +12,7 @@ public class ServidorTemporarioService {
     @Autowired
     private ServidorTemporarioRepository servidorTemporarioRepository;
 
-    public Optional<ServidorTemporario> findById(Long id) {
+    public Optional<ServidorTemporario> findById(Integer id) {
         return servidorTemporarioRepository.findById(id);
     }
 
@@ -20,7 +20,7 @@ public class ServidorTemporarioService {
         return servidorTemporarioRepository.save(servidorTemporario);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Integer id) {
         servidorTemporarioRepository.deleteById(id);
     }
 }

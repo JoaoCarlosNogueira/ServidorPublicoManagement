@@ -17,7 +17,7 @@ public class FotoPessoaService {
         return fotoPessoaRepository.findAll();
     }
 
-    public Optional<FotoPessoa> findById(Long id) {
+    public Optional<FotoPessoa> findById(Integer id) {
         return fotoPessoaRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class FotoPessoaService {
         return fotoPessoaRepository.save(fotoPessoa);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Integer id) {
         fotoPessoaRepository.deleteById(id);
     }
 }

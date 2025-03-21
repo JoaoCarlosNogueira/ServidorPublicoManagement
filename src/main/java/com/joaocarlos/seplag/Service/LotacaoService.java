@@ -17,7 +17,7 @@ public class LotacaoService {
         return lotacaoRepository.findAll();
     }
 
-    public Optional<Lotacao> findById(Long id) {
+    public Optional<Lotacao> findById(Integer id) {
         return lotacaoRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class LotacaoService {
         return lotacaoRepository.save(lotacao);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Integer id) {
         lotacaoRepository.deleteById(id);
     }
 }

@@ -13,7 +13,7 @@ public class Endereco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long endId;
+    private Integer endId;
 
     private String endTipoLogradouro;
     private String endLogradouro;

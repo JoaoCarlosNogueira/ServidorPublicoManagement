@@ -15,7 +15,7 @@ public class Lotacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long lotId;
+    private Integer lotId;
 
     @ManyToOne
     @JoinColumn(name = "pes_id")

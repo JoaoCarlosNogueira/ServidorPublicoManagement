@@ -18,7 +18,6 @@ public class ServidorTemporario {
     private Integer pesId;
 
     @OneToOne
-    @MapsId
     @JoinColumn(name = "pes_id", nullable = false)
     private Pessoa pessoa;
 

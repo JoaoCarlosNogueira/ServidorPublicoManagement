@@ -13,7 +13,7 @@ public class Cidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cidId;
+    private Integer cidId;
 
     private String cidNome;
     private String cidUf;

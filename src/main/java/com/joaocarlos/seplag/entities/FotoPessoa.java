@@ -14,7 +14,7 @@ import java.util.Date;
 public class FotoPessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long fpId;
+    private Integer fpId;
 
     @ManyToOne
     @JoinColumn(name = "pes_id")

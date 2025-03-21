@@ -13,7 +13,7 @@ public class Unidade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long unidId;
+    private Integer unidId;
 
     private String unidNome;
     private String unidSigla;

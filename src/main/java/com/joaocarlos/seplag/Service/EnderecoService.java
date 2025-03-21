@@ -17,7 +17,7 @@ public class EnderecoService {
         return enderecoRepository.findAll();
     }
 
-    public Optional<Endereco> findById(Long id) {
+    public Optional<Endereco> findById(Integer id) {
         return enderecoRepository.findById(id);
     }
 
@@ -25,7 +25,7 @@ public class EnderecoService {
         return enderecoRepository.save(endereco);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Integer id) {
         enderecoRepository.deleteById(id);
     }
 }

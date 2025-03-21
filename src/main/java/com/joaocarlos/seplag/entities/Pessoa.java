@@ -16,7 +16,7 @@ public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int pesId;
+    private Integer pesId;
 
     private String pesNome;
     private Date pesDataNascimento;
