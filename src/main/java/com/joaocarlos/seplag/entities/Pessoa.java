@@ -1,6 +1,8 @@
 package com.joaocarlos.seplag.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Pessoa {
 
     @Id
@@ -27,12 +30,15 @@ public class Pessoa {
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
     private List<PessoaEndereco> enderecos;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL, optional = true)
     private ServidorTemporario servidorTemporario;
 
-    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL,optional = true)
+    @JsonIgnore
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL, optional = true)
     private ServidorEfetivo servidorEfetivo;
 
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Lotacao> lotacoes;
 }

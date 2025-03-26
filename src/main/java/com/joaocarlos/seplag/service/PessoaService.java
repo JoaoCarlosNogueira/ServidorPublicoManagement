@@ -1,4 +1,4 @@
-package com.joaocarlos.seplag.Service;
+package com.joaocarlos.seplag.service;
 
 import com.joaocarlos.seplag.entities.Pessoa;
 import com.joaocarlos.seplag.repositories.PessoaRepository;

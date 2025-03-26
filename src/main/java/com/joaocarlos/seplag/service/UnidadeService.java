@@ -1,4 +1,4 @@
-package com.joaocarlos.seplag.Service;
+package com.joaocarlos.seplag.service;
 
 import com.joaocarlos.seplag.entities.Unidade;
 import com.joaocarlos.seplag.repositories.UnidadeRepository;
@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class UnidadeService {
+
     @Autowired
     private UnidadeRepository unidadeRepository;
 

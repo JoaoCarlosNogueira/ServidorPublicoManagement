@@ -23,6 +23,5 @@ public class FotoPessoa {
     private Date fpData;
     private String fpBucket;
     private String fpHash;
-
-    // Getters and Setters
+    
 }

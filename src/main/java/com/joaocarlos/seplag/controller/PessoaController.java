@@ -1,4 +1,4 @@
-package com.joaocarlos.seplag.Controller;
+package com.joaocarlos.seplag.controller;
 
 import com.joaocarlos.seplag.entities.Pessoa;
 import com.joaocarlos.seplag.repositories.PessoaRepository;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pessoas")
+@RequestMapping("/pessoa")
 public class PessoaController {
 
     private final PessoaRepository pessoaRepository;

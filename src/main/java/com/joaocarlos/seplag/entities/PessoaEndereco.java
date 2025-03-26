@@ -1,5 +1,6 @@
 package com.joaocarlos.seplag.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,16 +10,24 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+
+@IdClass(PessoaEnderecoId.class)
 public class PessoaEndereco {
 
-    @EmbeddedId
-    private PessoaEnderecoId id;
+    @Id
+    @Column(name = "pes_id")
+    private Integer pesId;
+
+    @Id
+    @Column(name = "end_id")
+    private Integer endId;
 
     @ManyToOne
-    @JoinColumn(name = "pes_id", insertable = false, updatable = false)
+    @JsonIgnore
+    @JoinColumn(name = "pes_id", referencedColumnName = "pesId", insertable = false, updatable = false)
     private Pessoa pessoa;
 
     @ManyToOne
-    @JoinColumn(name = "end_id", insertable = false, updatable = false)
+    @JoinColumn(name = "end_id", referencedColumnName = "endId", insertable = false, updatable = false)
     private Endereco endereco;
 }

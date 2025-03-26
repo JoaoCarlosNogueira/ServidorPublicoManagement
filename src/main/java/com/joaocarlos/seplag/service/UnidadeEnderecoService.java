@@ -1,4 +1,4 @@
-package com.joaocarlos.seplag.Service;
+package com.joaocarlos.seplag.service;
 
 import com.joaocarlos.seplag.entities.UnidadeEndereco;
 import com.joaocarlos.seplag.repositories.UnidadeEnderecoRepository;

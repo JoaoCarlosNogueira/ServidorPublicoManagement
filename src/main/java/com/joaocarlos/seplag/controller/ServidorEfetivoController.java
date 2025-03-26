@@ -1,6 +1,7 @@
-package com.joaocarlos.seplag.Controller;
+package com.joaocarlos.seplag.controller;
 
-import com.joaocarlos.seplag.Service.ServidorEfetivoService;
+import com.joaocarlos.seplag.service.ServidorEfetivoService;
+import com.joaocarlos.seplag.dto.ServidorDTO;
 import com.joaocarlos.seplag.entities.ServidorEfetivo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("/servidor")
+@RequestMapping("/servidorefetivo")
 public class ServidorEfetivoController {
     @Autowired
     private ServidorEfetivoService servidorEfetivoService;
@@ -31,9 +32,27 @@ public class ServidorEfetivoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(servidorEfetivoService.save(servidorEfetivo));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ServidorEfetivo> atualizar(@PathVariable Integer id, @RequestBody ServidorEfetivo servidorEfetivoAtualizado) {
+        ServidorEfetivo atualizado = servidorEfetivoService.update(id, servidorEfetivoAtualizado);
+        return ResponseEntity.ok(atualizado);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Integer id) {
         servidorEfetivoService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    private final ServidorEfetivoService service;
+
+    public ServidorEfetivoController(ServidorEfetivoService service) {
+        this.service = service;
+    }
+
+    @GetMapping("/unidade/{unidId}")
+    public List<ServidorDTO> getServidoresByUnidade(@PathVariable Integer unidId) {
+        return service.getServidoresByUnidade(unidId);
+    }
+
 }

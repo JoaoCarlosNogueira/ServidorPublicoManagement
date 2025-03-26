@@ -9,16 +9,23 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+
+@IdClass(UnidadeEnderecoId.class)
 public class UnidadeEndereco {
 
-    @EmbeddedId
-    private UnidadeEnderecoId id;
+    @Id
+    @Column(name = "unid_id")
+    private Integer unidId;
+
+    @Id
+    @Column(name = "end_id")
+    private Integer endId;
 
     @ManyToOne
-    @JoinColumn(name = "unidId", insertable = false, updatable = false)
+    @JoinColumn(name = "unid_id", referencedColumnName = "unidId", insertable = false, updatable = false)
     private Unidade unidade;
 
     @ManyToOne
-    @JoinColumn(name = "endId", insertable = false, updatable = false)
+    @JoinColumn(name = "end_id", referencedColumnName = "endId", insertable = false, updatable = false)
     private Endereco endereco;
 }

@@ -3,34 +3,17 @@ package com.joaocarlos.seplag.entities;
 import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;
+import java.util.Objects;
 
-@Embeddable
-public class UnidadeEnderecoId  implements Serializable {
-
-    private Integer unidadeId;
-    private Integer enderecoId;
+public class UnidadeEnderecoId implements Serializable {
+    private Integer unidId;
+    private Integer endId;
 
     public UnidadeEnderecoId() {}
 
-    public UnidadeEnderecoId(Integer unidadeId, Integer enderecoId) {
-        this.unidadeId = unidadeId;
-        this.enderecoId = enderecoId;
-    }
-
-    public Integer getUnidadeId() {
-        return unidadeId;
-    }
-
-    public void setUnidadeId(Integer unidadeId) {
-        this.unidadeId = unidadeId;
-    }
-
-    public Integer getEnderecoId() {
-        return enderecoId;
-    }
-
-    public void setEnderecoId(Integer enderecoId) {
-        this.enderecoId = enderecoId;
+    public UnidadeEnderecoId(Integer unidId, Integer endId) {
+        this.unidId = unidId;
+        this.endId = endId;
     }
 
     @Override
@@ -38,11 +21,11 @@ public class UnidadeEnderecoId  implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UnidadeEnderecoId that = (UnidadeEnderecoId) o;
-        return unidadeId.equals(that.unidadeId) && enderecoId.equals(that.enderecoId);
+        return Objects.equals(unidId, that.unidId) && Objects.equals(endId, that.endId);
     }
 
     @Override
     public int hashCode() {
-        return unidadeId.hashCode() + enderecoId.hashCode();
+        return Objects.hash(unidId, endId);
     }
 }
