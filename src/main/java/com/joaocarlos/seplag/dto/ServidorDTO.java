@@ -19,18 +19,21 @@ public class ServidorDTO{
     private Integer idade;
     private String unidade;
     private String fotografia;
+    private Date dataNascimento;
 
-    public ServidorDTO(String nome, Date dataNascimento, String unidade, String fotografia) {
+    public ServidorDTO(String nome,int idade ,Date dataNascimento, String unidade, String fotografia) {
         this.nome = nome;
-        this.idade = calcularIdade(dataNascimento);
+        this.idade = idade;
         this.unidade = unidade;
         this.fotografia = fotografia;
+        this.dataNascimento = dataNascimento;
     }
 
-    private int calcularIdade(Date dataNascimento) {
-        if (dataNascimento == null) return 0;
-        LocalDate nascimento = dataNascimento.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
-        return Period.between(nascimento, LocalDate.now()).getYears();
+    public ServidorDTO(String nome,Date dataNascimento, String unidade, String fotografia) {
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.unidade = unidade;
+        this.fotografia = fotografia;
     }
 
 }

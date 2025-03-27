@@ -1,9 +1,11 @@
 package com.joaocarlos.seplag.controller;
 
+import com.joaocarlos.seplag.dto.EnderecoDTO;
 import com.joaocarlos.seplag.service.ServidorEfetivoService;
 import com.joaocarlos.seplag.dto.ServidorDTO;
 import com.joaocarlos.seplag.entities.ServidorEfetivo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -53,6 +55,11 @@ public class ServidorEfetivoController {
     @GetMapping("/unidade/{unidId}")
     public List<ServidorDTO> getServidoresByUnidade(@PathVariable Integer unidId) {
         return service.getServidoresByUnidade(unidId);
+    }
+
+    @GetMapping("/endereco")
+    public List<EnderecoDTO> getEnderecoByNome(@RequestParam String servidor, Pageable pageable) {
+        return service.getEnderecoByNome(servidor,pageable);
     }
 
 }

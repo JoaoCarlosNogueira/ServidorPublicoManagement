@@ -1,12 +1,18 @@
 package com.joaocarlos.seplag.service;
 
+import com.joaocarlos.seplag.dto.EnderecoDTO;
 import com.joaocarlos.seplag.dto.ServidorDTO;
 import com.joaocarlos.seplag.entities.ServidorEfetivo;
 import com.joaocarlos.seplag.repositories.ServidorEfetivoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +53,22 @@ public class ServidorEfetivoService {
         this.repository = repository;
     }
 
-    public List<ServidorDTO> getServidoresByUnidade(Integer unidId) {
-        return repository.findServidoresByUnidade(unidId);
+    public int calcularIdade(Date dataNascimento) {
+        if (dataNascimento == null) return 0;
+        LocalDate nascimento = dataNascimento.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+        return Period.between(nascimento, LocalDate.now()).getYears();
     }
+
+    public List<ServidorDTO> getServidoresByUnidade(Integer unidId) {
+        List<ServidorDTO> servidores = repository.findServidoresByUnidade(unidId);
+        servidores.forEach(servidor ->{
+            servidor.setIdade(calcularIdade(servidor.getDataNascimento()));
+        });
+        return servidores;
+    }
+
+    public List<EnderecoDTO> getEnderecoByNome(String nomeParte,Pageable pageable) {
+        return repository.findEnderecoByNome(nomeParte,pageable);
+    }
+
 }
