@@ -3,6 +3,7 @@ package com.joaocarlos.seplag.repositories;
 import com.joaocarlos.seplag.dto.EnderecoDTO;
 import com.joaocarlos.seplag.dto.ServidorDTO;
 import com.joaocarlos.seplag.entities.ServidorEfetivo;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -32,6 +33,6 @@ public interface ServidorEfetivoRepository extends JpaRepository<ServidorEfetivo
             "JOIN Endereco e ON ue.endereco.endId = e.endId " +
             "JOIN Cidade c ON e.cidade.cidId = c.cidId " +
             "WHERE LOWER(s.pessoa.pesNome) LIKE LOWER(CONCAT('%', :nomeParte, '%'))")
-    List<EnderecoDTO> findEnderecoByNome(@Param("nomeParte") String nomeParte, Pageable pageable);
+    Page<EnderecoDTO> findEnderecoByNome(@Param("nomeParte") String nomeParte, Pageable pageable);
 
 }

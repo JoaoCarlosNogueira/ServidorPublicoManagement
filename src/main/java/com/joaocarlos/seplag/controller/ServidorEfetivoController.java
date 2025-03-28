@@ -5,6 +5,7 @@ import com.joaocarlos.seplag.service.ServidorEfetivoService;
 import com.joaocarlos.seplag.dto.ServidorDTO;
 import com.joaocarlos.seplag.entities.ServidorEfetivo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,7 +59,7 @@ public class ServidorEfetivoController {
     }
 
     @GetMapping("/endereco")
-    public List<EnderecoDTO> getEnderecoByNome(@RequestParam String servidor, Pageable pageable) {
+    public Page<EnderecoDTO> getEnderecoByNome(@RequestParam String servidor, Pageable pageable) {
         return service.getEnderecoByNome(servidor,pageable);
     }
 

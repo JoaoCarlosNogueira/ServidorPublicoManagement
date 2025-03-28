@@ -6,6 +6,7 @@ import com.joaocarlos.seplag.entities.ServidorEfetivo;
 import com.joaocarlos.seplag.repositories.ServidorEfetivoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -67,7 +68,7 @@ public class ServidorEfetivoService {
         return servidores;
     }
 
-    public List<EnderecoDTO> getEnderecoByNome(String nomeParte,Pageable pageable) {
+    public Page<EnderecoDTO> getEnderecoByNome(String nomeParte, Pageable pageable) {
         return repository.findEnderecoByNome(nomeParte,pageable);
     }
 
