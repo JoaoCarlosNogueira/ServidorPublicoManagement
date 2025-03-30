@@ -1,5 +1,6 @@
 package com.joaocarlos.seplag.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,10 +18,12 @@ public class Lotacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer lotId;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "pes_id")
     private Pessoa pessoa;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "unid_id")
     private Unidade unidade;

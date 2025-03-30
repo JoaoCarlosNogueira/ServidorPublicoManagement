@@ -3,6 +3,8 @@ package com.joaocarlos.seplag.service;
 import com.joaocarlos.seplag.entities.ServidorTemporario;
 import com.joaocarlos.seplag.repositories.ServidorTemporarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +15,8 @@ public class ServidorTemporarioService {
     @Autowired
     private ServidorTemporarioRepository servidorTemporarioRepository;
 
-    public List<ServidorTemporario> findAll() {
-        return servidorTemporarioRepository.findAll();
+    public Page<ServidorTemporario> findAll(Pageable pageable) {
+        return servidorTemporarioRepository.findAll(pageable);
     }
 
     public Optional<ServidorTemporario> findById(Integer id) {

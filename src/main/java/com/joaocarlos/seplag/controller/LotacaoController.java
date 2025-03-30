@@ -2,22 +2,25 @@ package com.joaocarlos.seplag.controller;
 
 import com.joaocarlos.seplag.service.LotacaoService;
 import com.joaocarlos.seplag.entities.Lotacao;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-@Controller
+@RestController
 @RequestMapping("/lotacao")
 public class LotacaoController {
     @Autowired
     private LotacaoService lotacaoService;
 
     @GetMapping
-    public ResponseEntity<List<Lotacao>> listarTodos() {
-        return ResponseEntity.ok(lotacaoService.findAll());
+    public ResponseEntity<Page<Lotacao>> listarTodos(@ParameterObject @PageableDefault(sort = "lotId", direction = Sort.Direction.ASC)Pageable pageable) {
+        return ResponseEntity.ok(lotacaoService.findAll(pageable));
     }
 
     @GetMapping("/{id}")

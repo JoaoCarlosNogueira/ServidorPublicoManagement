@@ -3,6 +3,8 @@ package com.joaocarlos.seplag.service;
 import com.joaocarlos.seplag.entities.Unidade;
 import com.joaocarlos.seplag.repositories.UnidadeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +16,8 @@ public class UnidadeService {
     @Autowired
     private UnidadeRepository unidadeRepository;
 
-    public List<Unidade> findAll() {
-        return unidadeRepository.findAll();
+    public Page<Unidade> findAll(Pageable pageable) {
+        return unidadeRepository.findAll(pageable);
     }
 
     public Optional<Unidade> findById(Integer id) {

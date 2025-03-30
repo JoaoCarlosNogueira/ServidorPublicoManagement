@@ -20,7 +20,7 @@ public class ServidorTemporario {
 
     @Id
     private Integer pesId;
-
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "pes_id")
     private Pessoa pessoa;

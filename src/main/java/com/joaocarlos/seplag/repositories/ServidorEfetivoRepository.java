@@ -16,6 +16,8 @@ import java.util.List;
 @Repository
 public interface ServidorEfetivoRepository extends JpaRepository<ServidorEfetivo,Integer> {
 
+    Page<ServidorEfetivo> findAll(Pageable pageable);
+
     @Query("SELECT new com.joaocarlos.seplag.dto.ServidorDTO(" +
             "s.pessoa.pesNome, s.pessoa.pesDataNascimento, u.unidNome, f.fpHash) " +
             "FROM ServidorEfetivo s " +
@@ -23,7 +25,7 @@ public interface ServidorEfetivoRepository extends JpaRepository<ServidorEfetivo
             "JOIN Unidade u ON l.unidade.unidId = u.unidId " +
             "LEFT JOIN FotoPessoa f ON f.pessoa.pesId = s.pessoa.pesId " +
             "WHERE u.unidId = :unidId")
-    List<ServidorDTO> findServidoresByUnidade(@Param("unidId") Integer unidId);
+    Page<ServidorDTO> findServidoresByUnidade(@Param("unidId") Integer unidId,Pageable pageable);
 
     @Query("SELECT new com.joaocarlos.seplag.dto.EnderecoDTO(" +
             "e.endTipoLogradouro, e.endLogradouro, e.endNumero, e.endBairro, c.cidNome, c.cidUf) " +
