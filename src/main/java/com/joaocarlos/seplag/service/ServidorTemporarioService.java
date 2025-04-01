@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ServidorTemporarioService {
     @Autowired
     private ServidorTemporarioRepository servidorTemporarioRepository;
+    @Autowired
+    private PessoaService pessoaService;
 
     public Page<ServidorTemporario> findAll(Pageable pageable) {
         return servidorTemporarioRepository.findAll(pageable);
@@ -24,11 +24,6 @@ public class ServidorTemporarioService {
     }
 
     public ServidorTemporario save(ServidorTemporario servidorTemporario) {
-        if (servidorTemporario.getPessoa() == null || servidorTemporario.getPessoa().getPesId() == null) {
-            throw new IllegalArgumentException("Pessoa e seu ID não podem ser nulos ao salvar Servidor Temporário.");
-        }
-
-        servidorTemporario.setPesId(servidorTemporario.getPessoa().getPesId());
         return servidorTemporarioRepository.save(servidorTemporario);
     }
 

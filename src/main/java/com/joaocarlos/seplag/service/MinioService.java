@@ -2,17 +2,13 @@ package com.joaocarlos.seplag.service;
 
 import io.minio.*;
 import io.minio.http.Method;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
+import java.security.MessageDigest;
+import java.util.Base64;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -23,13 +19,8 @@ public class MinioService {
     @Value("${minio.bucketName}")
     private String bucketName;
 
-    public MinioService(@Value("${minio.url}") String url,
-                        @Value("${minio.accessKey}") String accessKey,
-                        @Value("${minio.secretKey}") String secretKey) {
-        this.minioClient = MinioClient.builder()
-                .endpoint(url)
-                .credentials(accessKey, secretKey)
-                .build();
+    public MinioService(MinioClient minioClient) {
+        this.minioClient = minioClient;
     }
 
     private void criarBucketSeNaoExistir() throws Exception {
@@ -39,36 +30,43 @@ public class MinioService {
         }
     }
 
-    public String uploadImagem(MultipartFile file) throws Exception {
+    public String uploadFile(MultipartFile file) throws Exception {
+        String fileHash = generateHash(file.getInputStream());
+        String fileName = fileHash + "-" + file.getOriginalFilename();
+
         criarBucketSeNaoExistir();
 
-        String objectName = "servidores/" + file.getOriginalFilename();
+        minioClient.putObject(
+                PutObjectArgs.builder()
+                        .bucket(bucketName)
+                        .object(fileName)
+                        .stream(file.getInputStream(), file.getSize(), -1)
+                        .contentType(file.getContentType())
+                        .build()
+        );
 
-        try (InputStream inputStream = file.getInputStream()) {
-            minioClient.putObject(
-                    PutObjectArgs.builder()
-                            .bucket(bucketName)
-                            .object(objectName)
-                            .stream(inputStream, file.getSize(), -1)
-                            .contentType(file.getContentType())
-                            .build()
-            );
-        }
-
-        return objectName;
+        return fileName;
     }
 
-    public String gerarLinkTemporario(String objectName) throws Exception {
-        String fullPath = bucketName + "/" + objectName;
+    private String generateHash(InputStream inputStream) throws Exception {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        byte[] hashBytes = digest.digest(inputStream.readAllBytes());
+        return Base64.getEncoder().encodeToString(hashBytes);
+    }
 
-        return minioClient.getPresignedObjectUrl(
+    public String generateFileUrl(String fileName) throws Exception {
+        String presignedUrl = minioClient.getPresignedObjectUrl(
                 GetPresignedObjectUrlArgs.builder()
                         .bucket(bucketName)
-                        .object(fullPath)
+                        .object(fileName)
                         .method(Method.GET)
                         .expiry(5, TimeUnit.MINUTES)
                         .build()
         );
+
+
+
+        return presignedUrl;
     }
 
 }

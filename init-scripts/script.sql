@@ -8,7 +8,9 @@ INSERT INTO pessoa (pes_nome, pes_data_nascimento, pes_sexo, pes_mae, pes_pai) V
 ('Lucas Costa', '1988-11-30', 'Masculino', 'Tatiane Costa', 'Jorge Costa'),
 ('Patrícia Almeida', '1993-03-12', 'Feminino', 'Marta Almeida', 'Fernando Almeida'),
 ('Eduardo Santos', '1980-09-25', 'Masculino', 'Beatriz Santos', 'Ricardo Santos'),
-('Renata Lima', '1996-04-03', 'Feminino', 'Luíza Lima', 'Carlos Lima');
+('Renata Lima', '1996-04-03', 'Feminino', 'Luíza Lima', 'Carlos Lima'),
+('Eduardo Rocha', '1996-05-03', 'Feminino', 'Fabiana Rocha', 'Cristhian Lima'),
+('Juliano Silveira', '1998-04-03', 'Feminino','Katia Silveira ', 'Pedro Silveira');
 
 INSERT INTO cidade (cid_nome, cid_uf) VALUES
 ('São Paulo', 'SP'),

@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FotoPessoaRepository extends JpaRepository<FotoPessoa,Integer> {
+    FotoPessoa findByFpHash(String fpHash);
+    FotoPessoa findByPessoa_PesId(Integer pesId);
+
 }
