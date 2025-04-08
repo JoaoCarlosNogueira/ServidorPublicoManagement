@@ -24,6 +24,8 @@ INSERT INTO cidade (cid_nome, cid_uf) VALUES
 ('Curitiba', 'PR'),
 ('Recife', 'PE'),
 ('Manaus', 'AM'),
+('Cuiabá', 'MT'),
+('Campo Grande', 'MS'),
 ('Vitória', 'ES');
 
 
