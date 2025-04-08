@@ -10,7 +10,9 @@ INSERT INTO pessoa (pes_nome, pes_data_nascimento, pes_sexo, pes_mae, pes_pai) V
 ('Eduardo Santos', '1980-09-25', 'Masculino', 'Beatriz Santos', 'Ricardo Santos'),
 ('Renata Lima', '1996-04-03', 'Feminino', 'Luíza Lima', 'Carlos Lima'),
 ('Eduardo Rocha', '1996-05-03', 'Feminino', 'Fabiana Rocha', 'Cristhian Lima'),
-('Juliano Silveira', '1998-04-03', 'Feminino','Katia Silveira ', 'Pedro Silveira');
+('Juliano Silveira', '1998-04-03', 'Feminino','Katia Silveira ', 'Pedro Silveira'),
+('Barry Allen', '1996-05-03', 'Feminino', 'Nora Allen', 'Henry Allen'),
+('Bruce Wayne', '1996-05-03', 'Feminino', 'Martha Wayne', 'Thomas Wayne');
 
 INSERT INTO cidade (cid_nome, cid_uf) VALUES
 ('São Paulo', 'SP'),
@@ -23,6 +25,7 @@ INSERT INTO cidade (cid_nome, cid_uf) VALUES
 ('Recife', 'PE'),
 ('Manaus', 'AM'),
 ('Vitória', 'ES');
+
 
 INSERT INTO endereco (end_tipo_logradouro, end_logradouro, end_numero, end_bairro, cid_id) VALUES
 ('Rua', 'Avenida Paulista', 1000, 'Centro', 1),
